@@ -485,12 +485,6 @@
       }
       .post-content { padding: 42px 48px 48px; }
       .post-title { max-width: 760px; font-size: 38px; overflow-wrap: anywhere; }
-      .slides-panel { margin-top: 30px; padding-top: 26px; border-top: 1px solid var(--soft); }
-      .slides-panel h4 { margin: 0 0 14px; color: var(--accent-dark); font-size: 11px; text-transform: uppercase; }
-      .slides-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-      .slide-text { padding: 18px; border-left: 3px solid var(--accent); background: #f7f7f5; }
-      .slide-text strong { display: block; margin-bottom: 8px; color: var(--accent-dark); font-size: 11px; text-transform: uppercase; }
-      .slide-text p { margin: 0; font-size: 14px; line-height: 1.6; white-space: pre-line; }
       .footer-note { margin: 0; color: #c8c5bf; font-size: 13px; }
       .client-name { font-size: 104px; line-height: .86; }
       .month-title { font-size: 82px; }
@@ -505,7 +499,6 @@
         .post-content { padding: 28px 22px 34px; }
         .post-title { font-size: 30px; }
         .post-visual { min-height: 240px; }
-        .slides-list { grid-template-columns: 1fr; }
       }
     </style>
   </head>
@@ -669,7 +662,6 @@
               <button class="copy-button" type="button" data-copy="${index}">Copiar legenda</button>
             </div>
             <div class="caption">${captionHtml(post.legenda)}</div>
-            ${Array.isArray(post.slides) ? '<section class="slides-panel"><h4>Textos do carrossel</h4><div class="slides-list">' + post.slides.map((slide) => '<div class="slide-text"><strong>' + escapeHtml(slide.titulo) + '</strong><p>' + escapeHtml(slide.texto) + '</p></div>').join('') + '</div></section>' : ''}
           </div>
         </article>
       `).join("");
