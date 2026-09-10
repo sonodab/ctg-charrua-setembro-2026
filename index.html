@@ -469,14 +469,25 @@
         font-size: 12px;
         font-weight: 600;
       }
-      .post-card { display: block; }
+      .post-card { display: grid; }
+      .post-visual {
+        display: grid;
+        min-height: 540px;
+        place-items: center;
+        border-right: 1px solid var(--line);
+        background: #e6e5e2;
+      }
+      .media-pending {
+        color: #77736d;
+        font-size: 10px;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
       .post-content { padding: 42px 48px 48px; }
       .post-title { max-width: 760px; font-size: 38px; overflow-wrap: anywhere; }
-      .planning-notes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 30px; }
-      .planning-note { padding: 20px; border: 1px solid var(--soft); border-radius: 6px; background: #f7f7f5; }
-      .planning-note h4 { margin: 0 0 12px; font-size: 11px; text-transform: uppercase; color: var(--accent-dark); }
-      .planning-note p { margin: 0; color: #45423e; font-size: 14px; line-height: 1.65; white-space: pre-line; }
-      .slides-list { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+      .slides-panel { margin-top: 30px; padding-top: 26px; border-top: 1px solid var(--soft); }
+      .slides-panel h4 { margin: 0 0 14px; color: var(--accent-dark); font-size: 11px; text-transform: uppercase; }
+      .slides-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
       .slide-text { padding: 18px; border-left: 3px solid var(--accent); background: #f7f7f5; }
       .slide-text strong { display: block; margin-bottom: 8px; color: var(--accent-dark); font-size: 11px; text-transform: uppercase; }
       .slide-text p { margin: 0; font-size: 14px; line-height: 1.6; white-space: pre-line; }
@@ -493,7 +504,8 @@
         .footer h2 { font-size: 36px; }
         .post-content { padding: 28px 22px 34px; }
         .post-title { font-size: 30px; }
-        .planning-notes, .slides-list { grid-template-columns: 1fr; }
+        .post-visual { min-height: 240px; }
+        .slides-list { grid-template-columns: 1fr; }
       }
     </style>
   </head>
@@ -569,61 +581,61 @@
     "mes": "setembro-2026",
     "lote": "Aprovação Setembro 2026 | 4 posts culturais",
     "editoria": "Cultural",
-    "titulo": "Mês do Gaúcho: tempo de viver nossas raízes",
+    "titulo": "Origem da Semana Farroupilha",
     "formato": "Feed estático",
     "tema": "Mês do Gaúcho e Semana Farroupilha",
-    "legenda": "Setembro é mais do que um mês no calendário.\n\nÉ tempo de lembrar, valorizar e viver aquilo que faz parte das nossas raízes. 💚❤️💛\n\nA Semana Farroupilha é um dos momentos mais importantes da cultura gaúcha. Ela celebra a história, os costumes, os símbolos e o sentimento de pertencimento que atravessa gerações.\n\nMais do que recordar o passado, esse é um tempo de reforçar valores que seguem vivos no presente: respeito, união, coragem, convivência e amor pela tradição.\n\nNo C.T.G. Charrua, setembro é vivido com orgulho, porque a tradição não está apenas na memória — ela está no dia a dia, nas famílias, nas invernadas, nos encontros e em tudo aquilo que seguimos construindo juntos.\n\n👉 E esse é só o começo. Ao longo dos próximos dias, vamos compartilhar mais conteúdos sobre a história, os símbolos e os significados da Semana Farroupilha.\n\n“Com vincha e lança na mão, tudo pela tradição.”",
-    "textoImagem": "Opção 1:\nSemana Farroupilha\nMais do que uma data, um legado\n\nOpção 2:\nMês do Gaúcho\nTempo de viver nossas raízes\n\nOpção 3:\nSetembro Farroupilha\nHistória, cultura e tradição",
-    "sugestaoImagem": "Imagem institucional forte do CTG; bandeira do Rio Grande do Sul ou bandeiras da tradição; fogo de chão; pessoas pilchadas; clima de pertencimento e luz quente."
+    "legenda": "Setembro é mais do que um mês no calendário.\nÉ tempo de lembrar, valorizar e viver aquilo que faz parte das nossas raízes. 💚❤️💛\n\nA Semana Farroupilha é um dos momentos mais importantes da cultura gaúcha. Ela celebra a história, os costumes, os símbolos e o sentimento de pertencimento que atravessa gerações.\n\nMais do que recordar o passado, esse é um tempo de reforçar valores que seguem vivos no presente: respeito, união, coragem, convivência e amor pela tradição.\n\nNo C.T.G. Charrua, setembro é vivido com orgulho, porque a tradição não está apenas na memória — ela está no dia a dia, nas famílias, nas invernadas, nos encontros e em tudo aquilo que seguimos construindo juntos.\n\n👉 E esse é só o começo. Ao longo dos próximos dias, vamos compartilhar mais conteúdos sobre a história, os símbolos e os significados da Semana Farroupilha.\n\n“Com vincha e lança na mão, tudo pela tradição.” 💚❤️💛\n\n#Cultura #CulturaGaúcha #SemanaFarroupilha #MêsDoGaúcho #CTGCharrua",
+    "textoImagem": "Semana Farroupilha\nMais do que uma data, um legado\n\nAlternativa:\nSetembro Farroupilha\nHistória, cultura e tradição",
+    "sugestaoImagem": "Foto institucional forte do C.T.G. Charrua, com pessoas pilchadas, bandeira, fogo de chão ou uma cena de convivência. Tratamento quente, emocional e levemente pictórico."
   },
   {
     "mes": "setembro-2026",
     "lote": "Aprovação Setembro 2026 | 4 posts culturais",
     "editoria": "Cultural",
-    "titulo": "A tradição também vive nos símbolos",
+    "titulo": "Símbolos da cultura gaúcha",
     "formato": "Feed estático",
     "tema": "Educação e símbolos da tradição gaúcha",
-    "legenda": "A tradição também vive nos símbolos. 💚❤️💛\n\nEles ajudam a contar quem somos, de onde viemos e o que carregamos no coração. Na cultura gaúcha, cada símbolo tem força, memória e significado.\n\nA bandeira, o chimarrão, a pilcha, o cavalo, o fogo de chão e tantos outros elementos não são apenas imagens marcantes — são expressões de uma forma de viver, conviver e preservar raízes.\n\nNo C.T.G. Charrua, cada detalhe carrega história. E é justamente isso que faz da tradição algo tão vivo: ela está nos gestos, nos encontros, nas vestes, nos costumes e nos sentimentos que passam de geração em geração.\n\n👉 Ao longo deste mês, vamos seguir compartilhando mais sobre o universo da cultura gaúcha e tudo aquilo que faz parte dessa identidade tão forte.",
-    "textoImagem": "Opção 1:\nSímbolos da Tradição Gaúcha\nO que eles representam?\n\nOpção 2:\nA tradição também fala por símbolos\n\nOpção 3:\nMais do que objetos\nSímbolos que carregam história",
-    "sugestaoImagem": "Composição elegante e contemplativa com símbolos visuais fortes: chimarrão, lenço, chapéu, fogo de chão e bandeira; ou uma cena real com esses elementos reunidos."
+    "legenda": "A tradição também vive nos símbolos. 💚❤️💛\n\nEles ajudam a contar quem somos, de onde viemos e aquilo que escolhemos preservar.\n\nA bandeira, o chimarrão, a pilcha, o cavalo, o fogo de chão e tantos outros elementos fazem parte de uma cultura construída ao longo do tempo e mantida viva por quem continua dando significado a esses costumes.\n\nNo C.T.G. Charrua, esses símbolos estão presentes nos encontros, nas vestes, nas atividades e em muitos dos momentos compartilhados dentro e fora do galpão.\n\nPorque preservar a tradição também é conhecer o significado daquilo que carregamos conosco.\n\n👉 Neste Mês do Gaúcho, seguimos contando um pouco mais sobre as raízes e os costumes que fazem parte dessa história.\n\n#Cultura #CulturaGaúcha #TradiçãoGaúcha #SímbolosGaúchos #CTGCharrua",
+    "textoImagem": "Símbolos da Cultura Gaúcha\nVocê conhece seus significados?\n\nAlternativa:\nMais do que símbolos\nHistórias que carregamos conosco",
+    "sugestaoImagem": "Composição artística com cuia, lenço, chapéu, bandeira, fogo e elementos campeiros, preferencialmente fotografados no próprio C.T.G. Charrua. Pode trabalhar como natureza-morta sofisticada ou montagem em pintura."
   },
   {
     "mes": "setembro-2026",
     "lote": "Aprovação Setembro 2026 | 4 posts culturais",
     "editoria": "Cultural",
-    "titulo": "Chimarrão: um símbolo de encontro e tradição",
+    "titulo": "Chimarrão",
     "formato": "Feed estático",
     "tema": "Costumes, convivência e pertencimento",
-    "legenda": "O chimarrão é mais do que uma bebida. É encontro, conversa e convivência. 🧉💚❤️💛\n\nNa cultura gaúcha, ele ocupa um lugar especial porque reúne pessoas, aproxima gerações e transforma momentos simples em memória.\n\nEm volta de uma cuia, cabem histórias, risadas, ensinamentos e o sentimento de pertencimento que faz da tradição algo vivido no dia a dia.\n\nNo C.T.G. Charrua, o chimarrão também simboliza esse espírito de acolhimento: portas abertas, roda formada e gente reunida para compartilhar muito mais do que um costume.\n\nPorque tradição também é isso: um gesto simples que continua aproximando pessoas e mantendo vivas as nossas raízes.",
-    "textoImagem": "Opção 1:\nChimarrão\nUm símbolo de encontro e tradição\n\nOpção 2:\nMais do que uma bebida\nUm costume que une gerações\n\nOpção 3:\nEntre uma cuia e outra\nA tradição segue viva",
-    "sugestaoImagem": "Close bonito de uma cuia de chimarrão; mão de avô, pai e filho ou grupo reunido; fogo de chão ao fundo; clima quente, acolhedor e humano, com mais emoção do que somente o objeto."
+    "legenda": "O chimarrão é mais do que uma bebida.\nÉ encontro, conversa e convivência. 🧉💚❤️💛\n\nUma cuia que passa de mão em mão também compartilha histórias, experiências e momentos que ficam na memória.\n\nNa cultura gaúcha, o mate acompanha encontros entre amigos e famílias e se tornou um dos símbolos mais reconhecidos desse jeito de receber, conversar e estar junto.\n\nNo C.T.G. Charrua, ele também representa aquilo que valorizamos dentro do galpão: acolhimento, convivência e pertencimento.\n\nPorque algumas tradições permanecem justamente assim — nos pequenos gestos que continuam aproximando gerações.\n\n#Cultura #CulturaGaúcha #TradiçãoGaúcha #ChimarrãoGaúcho #CTGCharrua",
+    "textoImagem": "Chimarrão\nUm símbolo de encontro e tradição\n\nAlternativa:\nEntre uma cuia e outra,\na tradição segue viva.",
+    "sugestaoImagem": "Close da cuia sendo compartilhada entre pessoas, preferencialmente com duas ou três gerações. Fogo de chão ou galpão desfocado ao fundo, luz quente e foco nas mãos e no chimarrão."
   },
   {
     "mes": "setembro-2026",
     "lote": "Aprovação Setembro 2026 | 4 posts culturais",
     "editoria": "Cultural",
-    "titulo": "20/09 - Você sabe por que essa data é tão importante?",
+    "titulo": "20/09 - Por que essa data é tão importante para a cultura gaúcha?",
     "formato": "Carrossel",
     "tema": "20 de Setembro e Revolução Farroupilha",
-    "legenda": "O 20 de Setembro é uma das datas mais marcantes da cultura gaúcha. 💚❤️💛\n\nFoi nesse dia, em 1835, que teve início a Revolução Farroupilha, um marco histórico que passou a fazer parte da memória e da identidade do povo gaúcho.\n\nCom o passar do tempo, a data ganhou um significado ainda maior: tornou-se símbolo de pertencimento, orgulho cultural e valorização das tradições que seguem atravessando gerações.\n\nNo C.T.G. Charrua, viver o 20 de Setembro é também reforçar tudo aquilo que acreditamos e preservamos no dia a dia: convivência, respeito, história, cultura e amor pelas nossas raízes.\n\n👉 Arraste para o lado e entenda por que essa data é tão importante.",
-    "textoImagem": "20 de Setembro\nVocê sabe por que essa data é tão importante?",
-    "sugestaoImagem": "Imagens fortes e simbólicas com bandeira do Rio Grande do Sul, cavaleiros, fogo de chão, CTG, diferentes gerações pilchadas e clima de união, continuidade e orgulho.",
+    "legenda": "O 20 de Setembro é uma das datas mais marcantes da cultura gaúcha. 💚❤️💛\n\nFoi nesse dia, em 1835, que teve início a Revolução Farroupilha, acontecimento que passou a ocupar um lugar importante na memória e na identidade do Rio Grande do Sul.\n\nCom o passar do tempo, a data ganhou um significado que vai além do fato histórico: tornou-se também um momento de valorização das raízes, dos costumes e da cultura que continua sendo compartilhada entre gerações.\n\nNo C.T.G. Charrua, viver o 20 de Setembro é também manter essa história presente, aproximando passado, presente e futuro através daquilo que fazemos todos os dias.\n\n👉 Arraste para o lado e conheça um pouco mais sobre o significado dessa data.\n\n#História #CulturaGaúcha #SemanaFarroupilha #20DeSetembro #CTGCharrua",
+    "textoImagem": "20 de Setembro\nPor que essa data é tão importante para a cultura gaúcha?\n\n👉 Arraste e conheça um pouco dessa história.",
+    "sugestaoImagem": "Bandeira do Rio Grande do Sul, cavaleiros ou cena histórica em estilo pintura.",
     "slides": [
       {
         "titulo": "Slide 1 - Capa",
-        "texto": "20 de Setembro\nVocê sabe por que essa data é tão importante?"
+        "texto": "20 de Setembro\nPor que essa data é tão importante para a cultura gaúcha?\n\n👉 Arraste e conheça um pouco dessa história."
       },
       {
-        "titulo": "Slide 2",
-        "texto": "O 20 de Setembro de 1835 marcou o início da Revolução Farroupilha, um movimento que passou a ocupar lugar central na memória e na identidade do povo gaúcho."
+        "titulo": "Slide 2 - A origem",
+        "texto": "Tudo começa em 1835\n\nO 20 de Setembro de 1835 marcou o início da Revolução Farroupilha, acontecimento que se tornou um dos principais marcos da memória histórica do Rio Grande do Sul."
       },
       {
-        "titulo": "Slide 3",
-        "texto": "Hoje, a data vai além do fato histórico. Ela representa o orgulho pelas raízes, o respeito à cultura gaúcha e a valorização das tradições que seguem vivas até hoje."
+        "titulo": "Slide 3 - O significado",
+        "texto": "Uma história que se tornou símbolo\n\nCom o passar do tempo, o 20 de Setembro passou a representar também a valorização das raízes, da cultura e das tradições gaúchas.\n\nUma data que reúne história, memória e identidade."
       },
       {
-        "titulo": "Slide 4",
-        "texto": "No C.T.G. Charrua, o 20 de Setembro é vivido como um momento de memória, identidade e pertencimento.\n\n“Com vincha e lança na mão, tudo pela tradição.”"
+        "titulo": "Slide 4 - A tradição continua",
+        "texto": "Do passado para as novas gerações\n\nNo C.T.G. Charrua, celebrar o 20 de Setembro também é manter vivas as histórias, os costumes e os valores compartilhados entre gerações.\n\n“Com vincha e lança na mão, tudo pela tradição.” 💚❤️💛"
       }
     ]
   }
@@ -646,6 +658,7 @@
 
       document.getElementById("postsList").innerHTML = posts.map((post, index) => `
         <article class="post-card">
+          <div class="post-visual" aria-label="Mídia em produção"><span class="media-pending">Mídia em produção</span></div>
           <div class="post-content">
             <div class="post-head">
               <div>
@@ -656,11 +669,7 @@
               <button class="copy-button" type="button" data-copy="${index}">Copiar legenda</button>
             </div>
             <div class="caption">${captionHtml(post.legenda)}</div>
-            <div class="planning-notes">
-              <section class="planning-note"><h4>Chamadas para a arte</h4><p>${escapeHtml(post.textoImagem)}</p></section>
-              <section class="planning-note"><h4>Direção visual futura</h4><p>${escapeHtml(post.sugestaoImagem)}</p></section>
-              ${Array.isArray(post.slides) ? '<section class="slides-list">' + post.slides.map((slide) => '<div class="slide-text"><strong>' + escapeHtml(slide.titulo) + '</strong><p>' + escapeHtml(slide.texto) + '</p></div>').join('') + '</section>' : ''}
-            </div>
+            ${Array.isArray(post.slides) ? '<section class="slides-panel"><h4>Textos do carrossel</h4><div class="slides-list">' + post.slides.map((slide) => '<div class="slide-text"><strong>' + escapeHtml(slide.titulo) + '</strong><p>' + escapeHtml(slide.texto) + '</p></div>').join('') + '</div></section>' : ''}
           </div>
         </article>
       `).join("");
