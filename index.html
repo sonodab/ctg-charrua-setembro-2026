@@ -142,7 +142,8 @@
       }
 
       .drive-link,
-      .copy-button {
+      .copy-button,
+      .image-download {
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -159,7 +160,8 @@
       }
 
       .drive-link:hover,
-      .copy-button:hover { transform: translateY(-2px); background: var(--accent-dark); }
+      .copy-button:hover,
+      .image-download:hover { transform: translateY(-2px); background: var(--accent-dark); }
 
       .hero-layout {
         display: grid;
@@ -324,6 +326,16 @@
         background: #e6e5e2;
       }
 
+      .post-image-link { display: block; }
+
+      .post-image {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 5;
+        object-fit: contain;
+      }
+
       .post-content { padding: 40px 44px 46px; }
 
       .post-head {
@@ -357,7 +369,16 @@
         text-transform: uppercase;
       }
 
-      .copy-button {
+      .post-actions {
+        display: flex;
+        flex: 0 0 auto;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 10px;
+      }
+
+      .copy-button,
+      .image-download {
         flex: 0 0 auto;
         min-height: 40px;
         padding-inline: 14px;
@@ -367,7 +388,8 @@
         font-size: 12px;
       }
 
-      .copy-button:hover { color: #fff; }
+      .copy-button:hover,
+      .image-download:hover { color: #fff; }
 
       .caption { padding-top: 30px; }
 
@@ -450,7 +472,7 @@
         .post-visual { min-height: 440px; border-right: 0; border-bottom: 1px solid var(--line); }
         .post-content { padding: 30px 24px 36px; }
         .post-head { display: block; }
-        .copy-button { margin-top: 20px; }
+        .post-actions { justify-content: flex-start; margin-top: 20px; }
         .footer-layout { align-items: flex-start; flex-direction: column; }
       }
 
@@ -471,18 +493,73 @@
       }
       .post-card { display: grid; }
       .post-visual {
-        display: grid;
-        min-height: 540px;
-        place-items: center;
+        position: relative;
+        display: block;
+        min-height: 0;
+        overflow: hidden;
         border-right: 1px solid var(--line);
-        background: #e6e5e2;
+        background: #161616;
       }
-      .media-pending {
-        color: #77736d;
-        font-size: 10px;
-        font-weight: 600;
-        text-transform: uppercase;
+      .post-image-link { display: block; }
+      .post-image,
+      .carousel-slide img {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 5;
+        object-fit: contain;
+        background: #161616;
       }
+      .carousel-viewport { position: relative; overflow: hidden; }
+      .carousel-track {
+        display: flex;
+        transition: transform 360ms cubic-bezier(.22,.72,.24,1);
+        will-change: transform;
+      }
+      .carousel-slide { flex: 0 0 100%; min-width: 100%; }
+      .carousel-arrow {
+        position: absolute;
+        z-index: 2;
+        top: 50%;
+        display: grid;
+        width: 34px;
+        height: 34px;
+        padding: 0;
+        place-items: center;
+        transform: translateY(-50%);
+        border: 1px solid rgba(255,255,255,.42);
+        border-radius: 50%;
+        background: rgba(12,12,12,.62);
+        color: #fff;
+        font: 500 24px/1 Arial, sans-serif;
+        cursor: pointer;
+        backdrop-filter: blur(5px);
+      }
+      .carousel-arrow:hover { background: rgba(12,12,12,.82); }
+      .carousel-arrow:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+      .carousel-arrow.is-prev { left: 12px; }
+      .carousel-arrow.is-next { right: 12px; }
+      .carousel-pagination {
+        display: flex;
+        min-height: 34px;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        border-top: 1px solid var(--line);
+        background: var(--paper);
+      }
+      .carousel-dot {
+        width: 7px;
+        height: 7px;
+        padding: 0;
+        border: 0;
+        border-radius: 50%;
+        background: #c7c5c1;
+        cursor: pointer;
+        transition: background-color 180ms ease, transform 180ms ease;
+      }
+      .carousel-dot.is-active { transform: scale(1.35); background: var(--accent); }
+      .carousel-dot:focus-visible { outline: 2px solid var(--accent-dark); outline-offset: 3px; }
       .post-content { padding: 42px 48px 48px; }
       .post-title { max-width: 760px; font-size: 38px; overflow-wrap: anywhere; }
       .production-guidance { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 30px; }
@@ -508,7 +585,7 @@
         .footer h2 { font-size: 36px; }
         .post-content { padding: 28px 22px 34px; }
         .post-title { font-size: 30px; }
-        .post-visual { min-height: 240px; }
+        .post-visual { min-height: 0; border-right: 0; }
         .production-guidance, .slides-guidance { grid-template-columns: 1fr; }
       }
     </style>
@@ -529,7 +606,7 @@
             <span class="signature-mark">BS</span>
             <span class="signature-copy"><strong>Bruno Sonoda</strong><span>Planejamento de conteúdo</span></span>
           </div>
-          <span class="delivery-chip">Textos para aprovação</span>
+          <span class="delivery-chip">Conteúdos para aprovação</span>
         </div>
 
         <div class="hero-layout">
@@ -537,7 +614,7 @@
             <p class="eyebrow" data-reveal style="--delay: 90ms">Entrega mensal · Setembro 2026</p>
             <h1 class="client-name" data-reveal style="--delay: 140ms">C.T.G. Charrua</h1>
             <h2 class="month-title" data-reveal style="--delay: 190ms"><span>Setembro</span><span>2026</span></h2>
-            <p class="hero-copy" data-reveal style="--delay: 240ms">Quatro conteúdos culturais de setembro para aprovação. Confira as legendas e os textos do carrossel.</p>
+            <p class="hero-copy" data-reveal style="--delay: 240ms">Quatro conteúdos culturais de setembro para aprovação. Confira as artes e copie as legendas completas.</p>
           </div>
           <aside class="status-block" data-reveal style="--delay: 290ms">
             <p class="status-label">Status</p>
@@ -561,7 +638,7 @@
             <p class="section-eyebrow">Conteúdos selecionados</p>
             <h2>Planejamento do mês</h2>
           </div>
-          <p>Os quatro textos estão na ordem planejada para setembro. Ainda não há imagens nesta entrega.</p>
+          <p>Os quatro conteúdos estão na ordem planejada para setembro. Confira as artes e copie as legendas para aprovação.</p>
         </div>
         <div class="posts-list" id="postsList"></div>
       </div>
@@ -573,7 +650,7 @@
           <p class="section-eyebrow">C.T.G. Charrua</p>
           <h2>Setembro Farroupilha</h2>
         </div>
-        <p class="footer-note">Textos organizados para aprovação do cliente.</p>
+        <p class="footer-note">Conteúdos organizados para aprovação do cliente.</p>
       </div>
     </footer>
 
@@ -583,69 +660,52 @@
       const posts = [
   {
     "mes": "setembro-2026",
-    "lote": "Aprovação Setembro 2026 | 4 posts culturais",
     "editoria": "Cultural",
     "titulo": "Origem da Semana Farroupilha",
     "formato": "Feed",
-    "tema": "Mês do Gaúcho e Semana Farroupilha",
     "legenda": "Setembro é mais do que um mês no calendário.\nÉ tempo de lembrar, valorizar e viver aquilo que faz parte das nossas raízes. 💚❤️💛\n\nA Semana Farroupilha é um dos momentos mais importantes da cultura gaúcha. Ela celebra a história, os costumes, os símbolos e o sentimento de pertencimento que atravessa gerações.\n\nMais do que recordar o passado, esse é um tempo de reforçar valores que seguem vivos no presente: respeito, união, coragem, convivência e amor pela tradição.\n\nNo C.T.G. Charrua, setembro é vivido com orgulho, porque a tradição não está apenas na memória — ela está no dia a dia, nas famílias, nas invernadas, nos encontros e em tudo aquilo que seguimos construindo juntos.\n\n👉 E esse é só o começo. Ao longo dos próximos dias, vamos compartilhar mais conteúdos sobre a história, os símbolos e os significados da Semana Farroupilha.\n\n“Com vincha e lança na mão, tudo pela tradição.” 💚❤️💛\n\n#Cultura #CulturaGaúcha #SemanaFarroupilha #MêsDoGaúcho #CTGCharrua",
-    "textoImagem": "Semana Farroupilha\nMais do que uma data, um legado\n\nAlternativa:\nSetembro Farroupilha\nHistória, cultura e tradição",
-    "sugestaoImagem": "Foto institucional forte do C.T.G. Charrua, com pessoas pilchadas, bandeira, fogo de chão ou uma cena de convivência. Tratamento quente, emocional e levemente pictórico."
+    "media": {
+      "type": "image",
+      "src": "assets/final-post-01-abertura.png"
+    }
   },
   {
     "mes": "setembro-2026",
-    "lote": "Aprovação Setembro 2026 | 4 posts culturais",
     "editoria": "Cultural",
     "titulo": "Símbolos da cultura gaúcha",
     "formato": "Feed",
-    "tema": "Educação e símbolos da tradição gaúcha",
     "legenda": "A tradição também vive nos símbolos. 💚❤️💛\n\nEles ajudam a contar quem somos, de onde viemos e aquilo que escolhemos preservar.\n\nA bandeira, o chimarrão, a pilcha, o cavalo, o fogo de chão e tantos outros elementos fazem parte de uma cultura construída ao longo do tempo e mantida viva por quem continua dando significado a esses costumes.\n\nNo C.T.G. Charrua, esses símbolos estão presentes nos encontros, nas vestes, nas atividades e em muitos dos momentos compartilhados dentro e fora do galpão.\n\nPorque preservar a tradição também é conhecer o significado daquilo que carregamos conosco.\n\n👉 Neste Mês do Gaúcho, seguimos contando um pouco mais sobre as raízes e os costumes que fazem parte dessa história.\n\n#Cultura #CulturaGaúcha #TradiçãoGaúcha #SímbolosGaúchos #CTGCharrua",
-    "textoImagem": "Símbolos da Cultura Gaúcha\nVocê conhece seus significados?\n\nAlternativa:\nMais do que símbolos\nHistórias que carregamos conosco",
-    "sugestaoImagem": "Composição artística com cuia, lenço, chapéu, bandeira, fogo e elementos campeiros, preferencialmente fotografados no próprio C.T.G. Charrua. Pode trabalhar como natureza-morta sofisticada ou montagem em pintura."
+    "media": {
+      "type": "image",
+      "src": "assets/final-post-02-simbolos.png"
+    }
   },
   {
     "mes": "setembro-2026",
-    "lote": "Aprovação Setembro 2026 | 4 posts culturais",
     "editoria": "Cultural",
     "titulo": "Chimarrão",
     "formato": "Feed",
-    "tema": "Costumes, convivência e pertencimento",
     "legenda": "O chimarrão é mais do que uma bebida.\nÉ encontro, conversa e convivência. 🧉💚❤️💛\n\nUma cuia que passa de mão em mão também compartilha histórias, experiências e momentos que ficam na memória.\n\nNa cultura gaúcha, o mate acompanha encontros entre amigos e famílias e se tornou um dos símbolos mais reconhecidos desse jeito de receber, conversar e estar junto.\n\nNo C.T.G. Charrua, ele também representa aquilo que valorizamos dentro do galpão: acolhimento, convivência e pertencimento.\n\nPorque algumas tradições permanecem justamente assim — nos pequenos gestos que continuam aproximando gerações.\n\n#Cultura #CulturaGaúcha #TradiçãoGaúcha #ChimarrãoGaúcho #CTGCharrua",
-    "textoImagem": "Chimarrão\nUm símbolo de encontro e tradição\n\nAlternativa:\nEntre uma cuia e outra,\na tradição segue viva.",
-    "sugestaoImagem": "Close da cuia sendo compartilhada entre pessoas, preferencialmente com duas ou três gerações. Fogo de chão ou galpão desfocado ao fundo, luz quente e foco nas mãos e no chimarrão."
+    "media": {
+      "type": "image",
+      "src": "assets/final-post-03-chimarrao.png"
+    }
   },
   {
     "mes": "setembro-2026",
-    "lote": "Aprovação Setembro 2026 | 4 posts culturais",
     "editoria": "Cultural",
     "titulo": "20/09 - Por que essa data é tão importante para a cultura gaúcha?",
     "formato": "Carrossel",
-    "tema": "20 de Setembro e Revolução Farroupilha",
     "legenda": "O 20 de Setembro é uma das datas mais marcantes da cultura gaúcha. 💚❤️💛\n\nFoi nesse dia, em 1835, que teve início a Revolução Farroupilha, acontecimento que passou a ocupar um lugar importante na memória e na identidade do Rio Grande do Sul.\n\nCom o passar do tempo, a data ganhou um significado que vai além do fato histórico: tornou-se também um momento de valorização das raízes, dos costumes e da cultura que continua sendo compartilhada entre gerações.\n\nNo C.T.G. Charrua, viver o 20 de Setembro é também manter essa história presente, aproximando passado, presente e futuro através daquilo que fazemos todos os dias.\n\n👉 Arraste para o lado e conheça um pouco mais sobre o significado dessa data.\n\n#História #CulturaGaúcha #SemanaFarroupilha #20DeSetembro #CTGCharrua",
-    "textoImagem": "20 de Setembro\nPor que essa data é tão importante para a cultura gaúcha?\n\n👉 Arraste e conheça um pouco dessa história.",
-    "sugestaoImagem": "Bandeira do Rio Grande do Sul, cavaleiros ou cena histórica em estilo pintura.",
-    "slides": [
-      {
-        "titulo": "Slide 1 - Capa",
-        "texto": "20 de Setembro\nPor que essa data é tão importante para a cultura gaúcha?\n\n👉 Arraste e conheça um pouco dessa história.",
-        "imagem": "Bandeira do Rio Grande do Sul, cavaleiros ou cena histórica em estilo pintura."
-      },
-      {
-        "titulo": "Slide 2 - A origem",
-        "texto": "Tudo começa em 1835\n\nO 20 de Setembro de 1835 marcou o início da Revolução Farroupilha, acontecimento que se tornou um dos principais marcos da memória histórica do Rio Grande do Sul.",
-        "imagem": "Representação histórica, cavaleiros em movimento, paisagem do Sul ou composição pictórica."
-      },
-      {
-        "titulo": "Slide 3 - O significado",
-        "texto": "Uma história que se tornou símbolo\n\nCom o passar do tempo, o 20 de Setembro passou a representar também a valorização das raízes, da cultura e das tradições gaúchas.\n\nUma data que reúne história, memória e identidade.",
-        "imagem": "Transição entre passado e presente, com cavaleiros ou pintura histórica se fundindo a famílias e pessoas pilchadas atualmente."
-      },
-      {
-        "titulo": "Slide 4 - A tradição continua",
-        "texto": "Do passado para as novas gerações\n\nNo C.T.G. Charrua, celebrar o 20 de Setembro também é manter vivas as histórias, os costumes e os valores compartilhados entre gerações.\n\n“Com vincha e lança na mão, tudo pela tradição.” 💚❤️💛",
-        "imagem": "Crianças, adultos e idosos juntos no galpão ou em atividade cultural."
-      }
-    ]
+    "media": {
+      "type": "carousel",
+      "slides": [
+        "assets/final-post-04-slide-01.png",
+        "assets/final-post-04-slide-02.png",
+        "assets/final-post-04-slide-03.png",
+        "assets/final-post-04-slide-04.png"
+      ]
+    }
   }
 ];
 
@@ -664,9 +724,39 @@
         }).join("");
       };
 
+      const renderMedia = (post, index) => {
+        if (post.media.type === "carousel") {
+          const slides = post.media.slides.map((slide, slideIndex) => `
+            <div class="carousel-slide" aria-hidden="${slideIndex === 0 ? "false" : "true"}">
+              <img src="${escapeHtml(slide)}" alt="${escapeHtml(post.titulo)} - slide ${slideIndex + 1}" width="1080" height="1350" loading="lazy">
+            </div>
+          `).join("");
+          const dots = post.media.slides.map((_, slideIndex) => `
+            <button class="carousel-dot${slideIndex === 0 ? " is-active" : ""}" type="button" data-carousel-dot="${slideIndex}" aria-label="Ir para o slide ${slideIndex + 1}" aria-current="${slideIndex === 0 ? "true" : "false"}"></button>
+          `).join("");
+          return `
+            <div class="post-visual carousel-media" data-carousel data-current-slide="0" aria-label="Carrossel do post ${String(index + 1).padStart(2, "0")}">
+              <div class="carousel-viewport">
+                <div class="carousel-track" data-carousel-track>${slides}</div>
+                <button class="carousel-arrow is-prev" type="button" data-carousel-prev aria-label="Slide anterior">‹</button>
+                <button class="carousel-arrow is-next" type="button" data-carousel-next aria-label="Próximo slide">›</button>
+              </div>
+              <div class="carousel-pagination" aria-label="Seleção de slide">${dots}</div>
+            </div>
+          `;
+        }
+        return `
+          <div class="post-visual">
+            <a class="post-image-link" href="${escapeHtml(post.media.src)}" target="_blank" rel="noopener noreferrer">
+              <img class="post-image" src="${escapeHtml(post.media.src)}" alt="${escapeHtml(post.titulo)}" width="1080" height="1350" loading="${index === 0 ? "eager" : "lazy"}">
+            </a>
+          </div>
+        `;
+      };
+
       document.getElementById("postsList").innerHTML = posts.map((post, index) => `
         <article class="post-card">
-          <div class="post-visual" aria-label="Mídia em produção"><span class="media-pending">Mídia em produção</span></div>
+          ${renderMedia(post, index)}
           <div class="post-content">
             <div class="post-head">
               <div>
@@ -678,11 +768,6 @@
             </div>
             <div class="caption">${captionHtml(post.legenda)}</div>
 
-            <div class="production-guidance">
-              <section class="guidance-block"><h4>Texto na imagem</h4><p>${escapeHtml(post.textoImagem)}</p></section>
-              <section class="guidance-block"><h4>Orientação de imagem</h4><p>${escapeHtml(post.sugestaoImagem)}</p></section>
-              ${Array.isArray(post.slides) ? '<section class="guidance-block carousel-guidance"><h4>Orientações do carrossel</h4><div class="slides-guidance">' + post.slides.map((slide) => '<div class="slide-guidance"><strong>' + escapeHtml(slide.titulo) + '</strong><p>' + escapeHtml(slide.texto) + '</p>' + (slide.imagem ? '<small><b>Imagem:</b> ' + escapeHtml(slide.imagem) + '</small>' : '') + '</div>').join('') + '</div></section>' : ''}
-            </div>
           </div>
         </article>
       `).join("");
@@ -709,6 +794,29 @@
         toast.classList.add("is-visible");
         window.clearTimeout(toastTimer);
         toastTimer = window.setTimeout(() => toast.classList.remove("is-visible"), 1800);
+      });
+
+      const updateCarousel = (carousel, nextIndex) => {
+        const slides = [...carousel.querySelectorAll(".carousel-slide")];
+        const dots = [...carousel.querySelectorAll("[data-carousel-dot]")];
+        const index = (nextIndex + slides.length) % slides.length;
+        carousel.dataset.currentSlide = String(index);
+        carousel.querySelector("[data-carousel-track]").style.transform = `translateX(-${index * 100}%)`;
+        slides.forEach((slide, slideIndex) => slide.setAttribute("aria-hidden", String(slideIndex !== index)));
+        dots.forEach((dot, dotIndex) => {
+          dot.classList.toggle("is-active", dotIndex === index);
+          dot.setAttribute("aria-current", String(dotIndex === index));
+        });
+      };
+
+      document.addEventListener("click", (event) => {
+        const control = event.target.closest("[data-carousel-prev], [data-carousel-next], [data-carousel-dot]");
+        if (!control) return;
+        const carousel = control.closest("[data-carousel]");
+        const current = Number(carousel.dataset.currentSlide || 0);
+        if (control.matches("[data-carousel-prev]")) updateCarousel(carousel, current - 1);
+        if (control.matches("[data-carousel-next]")) updateCarousel(carousel, current + 1);
+        if (control.matches("[data-carousel-dot]")) updateCarousel(carousel, Number(control.dataset.carouselDot));
       });
 
       window.addEventListener("load", () => {
