@@ -606,7 +606,7 @@
             <span class="signature-mark">BS</span>
             <span class="signature-copy"><strong>Bruno Sonoda</strong><span>Planejamento de conteúdo</span></span>
           </div>
-          <span class="delivery-chip">Conteúdos para aprovação</span>
+          <a class="drive-link" href="https://drive.google.com/drive/folders/1kmWnAdx9C6ge1UVPqRA6r9I4mzw1RSq3?usp=sharing" target="_blank" rel="noopener noreferrer">Abrir pasta no Drive</a>
         </div>
 
         <div class="hero-layout">
@@ -650,7 +650,7 @@
           <p class="section-eyebrow">C.T.G. Charrua</p>
           <h2>Setembro Farroupilha</h2>
         </div>
-        <p class="footer-note">Conteúdos organizados para aprovação do cliente.</p>
+        <a class="drive-link" href="https://drive.google.com/drive/folders/1kmWnAdx9C6ge1UVPqRA6r9I4mzw1RSq3?usp=sharing" target="_blank" rel="noopener noreferrer">Abrir pasta no Drive</a>
       </div>
     </footer>
 
@@ -764,7 +764,10 @@
                 <h3 class="post-title">${escapeHtml(post.titulo)}</h3>
                 <span class="post-meta">${escapeHtml(post.editoria)} · ${escapeHtml(post.formato)}</span>
               </div>
-              <button class="copy-button" type="button" data-copy="${index}">Copiar legenda</button>
+              <div class="post-actions">
+                <button class="copy-button" type="button" data-copy="${index}">Copiar legenda</button>
+                <a class="image-download" href="${escapeHtml(post.media.type === "carousel" ? "assets/ctg-charrua-post-04-carrossel-20-de-setembro.zip" : post.media.src)}" download="${post.media.type === "carousel" ? "CTG-Charrua-Setembro-2026-Post-04-Carrossel.zip" : `CTG-Charrua-Setembro-2026-Post-${String(index + 1).padStart(2, "0")}.png`}">${post.media.type === "carousel" ? "Baixar carrossel" : "Baixar imagem"}</a>
+              </div>
             </div>
             <div class="caption">${captionHtml(post.legenda)}</div>
 
